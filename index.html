@@ -5,305 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authism Robo Therapy</title>
-    <style>
-        :root {
-            --bleu-ciel: #87CEEB;
-            --crem: #F5F5DC;
-            --rosu: #FF0000;
-            --verde-pal: #98FB98;
-            --roz-pal: #FFB6C1;
-        }
-
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 0;
-            background: white;
-            text-align: center;
-            overflow-x: hidden;
-        }
-
-        p {
-            font-weight: 500;
-            text-align: justify;
-        }
-
-        /* HEADER LOGO */
-        .blue-brain {
-            filter: hue-rotate(180deg);
-            font-size: clamp(35px, 3vw, 70px);
-        }
-
-        /* CARUSEL CU IMAGINI DINAMICE */
-        .carousel {
-            width: 100%;
-            height: 570px;
-            position: relative;
-            overflow: hidden;
-            background: white;
-        }
-
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            opacity: 0;
-            transition: opacity 1.2s;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .slide.active {
-            opacity: 1;
-            z-index: 5;
-        }
-
-        .slide h2 {
-            color: white;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-            font-size: clamp(1.2rem, 4vw, 2.5rem);
-            padding: 0 15px;
-            max-width: 800px;
-             background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-        }
-
-        /* SETĂRI IMAGINI CARUSEL (Desktop) */
-        #slide1 {
-            background-image: url('d1.png');
-        }
-
-        #slide2 {
-            background-image: url('d2.png');
-        }
-
-        #slide3 {
-            background-image: url('d3.png');
-        }
-
-        @media (max-width: 768px) {
-            .carousel {
-                height: 400px;
-            }
-
-            #slide1 {
-                background-image: url('m1.png');
-            }
-
-            /* Imaginile pătrate pentru mobil */
-            #slide2 {
-                background-image: url('m2.png');
-            }
-
-            #slide3 {
-                background-image: url('m3.png');
-            }
-        }
-
-        /* LAYOUT & GRID */
-        .section-padding {
-            padding: 80px 5%;
-        }
-
-        .grid-responsive {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .big-emoji {
-            font-size: 80px;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .btn-red {
-            background: var(--rosu);
-            color: black;
-            padding: 15px 35px;
-            border: none;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-            text-transform: uppercase;
-        }
-
-        .btn-blue {
-            background: dodgerblue;
-            color: black;
-            padding: 15px 35px;
-            border: none;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-            text-transform: uppercase;
-        }
-
-
-        .btn-green {
-            background: springgreen;
-            color: black;
-            padding: 15px 35px;
-            border: none;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-            text-transform: uppercase;
-        }
-
-        .btn-yellow {
-            background: gold;
-            color: black;
-            padding: 15px 35px;
-            border: none;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-            text-transform: uppercase;
-        }
-
-        /* JOC TANGRAM */
-
-        .image-background {
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
-            color: white;
-            padding-bottom: 8vw;
-            margin-left: -14px;
-            padding-left: 0;
-            height: 700px;
-        }
-
-        #underwater {
-            width: 100%;
-            background-image: url("./d4.png");
-        }
-
-        #tangram-board {
-            width: 350px;
-            height: 350px;
-            background: var(--roz-pal);
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            padding: 15px;
-            border: 5px solid #555;
-            position: relative;
-            box-sizing: border-box;
-        }
-
-        .drop-zone {
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            position: relative;
-        }
-
-        .piese-depozit {
-            width: 350px;
-            margin: 20px auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            justify-items: center;
-        }
-
-        .piesa-drag {
-            cursor: grab;
-        }
-
-        #replay-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 50px;
-            background: white;
-            border: 3px solid var(--rosu);
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            cursor: pointer;
-            display: none;
-            z-index: 20;
-        }
-
-        .smile-feedback {
-            position: absolute;
-            font-size: 40px;
-            animation: popSmile 1s forwards;
-            pointer-events: none;
-        }
-
-        @keyframes popSmile {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
-
-            50% {
-                transform: scale(1.5);
-                opacity: 1;
-            }
-
-            100% {
-                transform: scale(1);
-                opacity: 0;
-            }
-        }
-
-        /* INFO FOOTER */
-        footer {
-            background: black;
-            color: white;
-            padding: 60px 5%;
-        }
-
-        .footer-cols {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            text-align: center;
-        }
-
-        @media (max-width: 600px) {
-            .footer-cols {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        input {
-            width: 80%;
-            padding: 12px;
-            border-radius: 3px;
-            border: 1px solid #ccc;
-            margin-top: 10px;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: 0.8s;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
 </head>
 
 <body>
@@ -343,7 +46,7 @@
         <h3>AUTISMUL NU ESTE UN INAMIC INVINCIBIL!</h3>
     </section>
 
-    <section class="section-padding reveal" style="background: #c0c8cf;" id="rezultate">
+    <section class="section-padding reveal" style="background: white;" id="rezultate">
         <h2>SERVICII</h2>
         <div class="grid-responsive">
             <div><span class="big-emoji">🧩</span>
@@ -373,7 +76,7 @@
         </div>
     </section>
 
-    <section class="section-padding reveal" style="background: lightgrey;">
+    <section class="section-padding reveal" style="background: white;">
         <h2>REZULTATE</h2>
         <div class="grid-responsive">
             <div><span class="big-emoji">👧👦</span>
@@ -430,7 +133,7 @@
     <div class="image-background" id="underwater">
         <br>
         <h2 style="color: magenta;">ROBO THERAPY</h2>
-          <h2 style="color: magenta;">TERAPIA VIITORULUI</h2>
+        <h2 style="color: magenta;">TERAPIA VIITORULUI</h2>
         <button class="btn-red">AFLĂ MAI MULTE!</button>
     </div>
 
@@ -475,9 +178,6 @@
             <div class="piese-depozit" id="box-piese"></div>
         </section>
 
-
-
-
         <h2 style="color:red">INFO</h2>
         <div class="footer-cols">
             <div>
@@ -510,78 +210,7 @@
             Misiunea, serviciile si rezultatele prezentate sunt fictive!</h5><br>
     </footer>
 
-    <script>
-        // Carusel
-        let cur = 0; const s = document.querySelectorAll('.slide');
-        setInterval(() => { s[cur].classList.remove('active'); cur = (cur + 1) % s.length; s[cur].classList.add('active'); }, 4000);
 
-        // Scroll
-        const obs = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('active')), { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
-
-        const counters = document.querySelectorAll('.counter');
-        const speed = 100; // Cu cât e mai mic numărul, cu atât e mai rapidă animația
-
-        const startCounters = () => {
-            counters.forEach(counter => {
-                const animate = () => {
-                    const value = +counter.getAttribute('data-target');
-                    const data = +counter.innerText;
-                    const time = value / speed;
-
-                    if (data < value) {
-                        counter.innerText = Math.ceil(data + time);
-                        setTimeout(animate, 20);
-                    } else {
-                        counter.innerText = value.toLocaleString(); // Adaugă separator de mii (ex: 10.000)
-                    }
-                };
-                animate();
-            });
-        };
-
-        // Declanșăm numărătoarea doar când secțiunea este vizibilă
-        const counterObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                startCounters();
-                counterObserver.disconnect(); // Se rulează o singură dată
-            }
-        }, { threshold: 0.5 });
-
-        counterObserver.observe(document.querySelector('#rezultate'));
-        // Joc
-        const shapes = [
-            { id: 'semicerc', svg: '<path d="M 5,40 A 25,25 0 0,1 55,40 Z" stroke="#98FB98" stroke-width="4" fill="#FFB6C1"/>' }, { id: 'triunghi', svg: '<polygon points="30,5 55,55 5,55" stroke="#98FB98" stroke-width="4" fill="#FFB6C1"/>' },
-            { id: 'patrat', svg: '<rect width="50" height="50" x="5" y="5" stroke="#98FB98" stroke-width="4" fill="#FFB6C1"/>' }, { id: 'hexagon', svg: '<polygon points="30,5 55,20 55,45 30,59 5,45 5,20" stroke="#98FB98" stroke-width="4" fill="#FFB6C1"/>' },
-            { id: 'paralel', svg: '<polygon points="20,5 65,5 50,45 5,45" stroke="#98FB98" stroke-width="4" fill="#FFB6C1"/>' }, { id: 'dreptunghi', svg: '<rect width="60" height="40" x="5" y="5" stroke="#98FB98" stroke-width="4" fill="#FFB6C1"/>' },
-            { id: 'cerc', svg: '<circle cx="30" cy="30" r="25" stroke="#98FB98" stroke-width="4" fill="#FFB6C1"/>' }, { id: 'trapez', svg: '<polygon points="15,5 45,5 55,45 5,45" stroke="#98FB98" stroke-width="4" fill="#FFB6C1"/>' },
-            { id: 'oval', svg: '<ellipse cx="35" cy="25" rx="30" ry="15" stroke="#98FB98" stroke-width="4" fill="#FFB6C1"/>' }
-        ];
-        let done = 0;
-        function init() {
-            const b = document.getElementById('box-piese'); b.innerHTML = '';
-            shapes.forEach(sh => {
-                let d = document.createElement('div'); d.className = 'piesa-drag'; d.draggable = true; d.id = 'd-' + sh.id;
-                d.innerHTML = `<svg width="70" height="60">${sh.svg}</svg>`;
-                d.addEventListener('dragstart', e => e.dataTransfer.setData('text', sh.id));
-                b.appendChild(d);
-            });
-        }
-        function resetGame() { done = 0; document.getElementById('replay-btn').style.display = 'none'; document.querySelectorAll('.drop-zone').forEach(z => z.style.background = '#000'); init(); }
-        document.querySelectorAll('.drop-zone').forEach(z => {
-            z.addEventListener('dragover', e => e.preventDefault());
-            z.addEventListener('drop', e => {
-                e.preventDefault(); const id = e.dataTransfer.getData('text');
-                if (id === z.dataset.shape && z.style.background !== 'var(--roz-pal)') {
-                    z.style.background = 'var(--verde-pal)'; document.getElementById('d-' + id).style.visibility = 'hidden';
-                    done++; let sm = document.createElement('div'); sm.className = 'smile-feedback'; sm.innerText = '😊';
-                    z.appendChild(sm); setTimeout(() => sm.remove(), 1000);
-                    if (done === 9) document.getElementById('replay-btn').style.display = 'block';
-                }
-            });
-        });
-        init();
-    </script>
 </body>
 
 </html>
