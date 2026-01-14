@@ -180,7 +180,7 @@
  	width: 100%;
  	background-image: url("./d4.png");
  }
-
+/* TANGRAM */
  #tangram-board {
  	width: 350px;
  	height: 350px;
@@ -295,3 +295,39 @@
  	opacity: 1;
  	transform: translateY(0);
  }
+
+ 
+#balloon {
+	animation: balloon-float 88s ease-in-out infinite;
+}
+
+@keyframes balloon-float {
+	0% {
+		transform: translate(0, 8px) scale(1) rotate(-4deg);
+	}
+
+	17% {
+		transform: translate(0, -30px) scale(1) rotate(3deg);
+	}
+
+	26% {
+		transform: translate(0, 8px) scale(1) rotate(0deg);
+	}
+
+	35% {
+		transform: translate(0, -32px) scale(1) rotate(-2deg);
+	}
+
+	53% {
+		transform: translate(0, 8px) scale(1) rotate(3deg);
+	}
+
+	71% {
+		transform: translate(0, -30px) scale(1) rotate(0deg);
+	}
+
+	100% {
+		transform: translate(0, 8px) scale(1) rotate(-4deg);
+	}
+}
+
