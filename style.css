@@ -66,7 +66,7 @@
 
  /* SETĂRI IMAGINI CARUSEL (Desktop) */
  #slide1 {
- 	background-image: url('d1.png');
+ 	background-image: url('d3.png');
  }
 
  #slide2 {
@@ -74,7 +74,7 @@
  }
 
  #slide3 {
- 	background-image: url('d3.png');
+ 	background-image: url('d1.png');
  }
 
  @media (max-width: 768px) {
@@ -83,7 +83,7 @@
  	}
 
  	#slide1 {
- 		background-image: url('m1.png');
+ 		background-image: url('m3.png');
  	}
 
  	/* Imaginile pătrate pentru mobil */
@@ -92,7 +92,7 @@
  	}
 
  	#slide3 {
- 		background-image: url('m3.png');
+ 		background-image: url('m1.png');
  	}
  }
 
